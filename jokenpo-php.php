@@ -6,20 +6,13 @@ echo'....................'.PHP_EOL;
 $jogador = readline('Escolha: pedra, papel ou tesoura: ');
 
 
-if($jogador == 'pedra' or $jogador == 'papel' or $jogador == 'tesoura'){
-    echo "voce escolheu $jogador".PHP_EOL;
-}
-
-
-
-while($jogador != 'pedra' or $jogador != 'papel' or $jogador != 'tesoura'){
-    $jogador = readline('ERRO. Escolha uma opção válida: ');
-
-    if($jogador == 'pedra' or $jogador == 'papel' or $jogador == 'tesoura'){
-        echo "voce escolheu $jogador".PHP_EOL;
+switch ($jogador) {
+    case 'pedra':
+    case 'papel':
+    case 'tesoura':
+        echo "Voce escolheu $jogador";
         break;
-    }
-
+    default:
+        $jogador = readline('ERRO. Escolha uma opção valida: ');
 }
-
 
