@@ -14,7 +14,10 @@ switch ($jogador) {
         break;
     default:
         $jogador = readline('ERRO. Escolha uma opção valida: ').PHP_EOL;
+
 }
+
+
 
 $gera = rand(1,3);
 
