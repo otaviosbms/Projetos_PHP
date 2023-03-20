@@ -17,7 +17,21 @@ class Conta
 {
     private $cpfTitular;
     private $nomeTitular;
-    private $saldo = 0;
+    private $saldo;
+
+    // \ METODO CONSTRUTOR / 
+    // metodos construtores devem ser usados apenas para inicializar a instancia de forma válida.
+    // Métodos que são chmados automaticamente assim que um objeto é criado
+
+    public function __construct(string $cpfTitular, string $nomeTitular)
+    {
+        // pré definições da criação da conta
+        $this->cpfTitular = $cpfTitular;
+        $this->nomeTitular = $nomeTitular;
+        $this->saldo = 0;
+    }
+
+    //operações:
 
     public function sacar(float $valorASacar): void
     {
@@ -49,4 +63,36 @@ class Conta
             $contaDestino->depositar($valorATransferir);
         
     }
+
+    // NÃO MAIS NECESSÁRIO DEVIDO O MÉTODO CONSTRUTOR.
+
+    // //definições:
+
+    // public function defineCpfTitular(string $cpf):void
+    // {
+    //     $this->cpfTitular = $cpf; 
+    // }
+
+    // public function defineNomeTitular(string $nome):void
+    // {
+    //     $this->nomeTitular = $nome; 
+    // }
+
+    //chamadas:
+
+    public function recuperarSaldo(): float
+    {
+        return $this->saldo;
+    }
+
+    public function recuperarCpfTitular(): string
+    {
+        return $this->cpfTitular;
+    }
+
+    public function recuperarNomeTitular(): string
+    {
+        return $this->nomeTitular;
+    }
+
 }
