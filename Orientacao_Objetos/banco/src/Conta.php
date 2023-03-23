@@ -15,6 +15,9 @@
 
 class Conta
 {
+
+    // ATRIBUTOS DEVEM SER PRIVADOS.
+
     private $cpfTitular;
     private $nomeTitular;
     private $saldo;
@@ -27,9 +30,12 @@ class Conta
     {
         // pré definições da criação da conta
         $this->cpfTitular = $cpfTitular;
+        $this->validaNomeTitular($nomeTitular);
         $this->nomeTitular = $nomeTitular;
         $this->saldo = 0;
     }
+
+    // MÉTODOS PÚBLICOS:
 
     //operações:
 
@@ -65,14 +71,11 @@ class Conta
     }
 
     // NÃO MAIS NECESSÁRIO DEVIDO O MÉTODO CONSTRUTOR.
-
     // //definições:
-
     // public function defineCpfTitular(string $cpf):void
     // {
     //     $this->cpfTitular = $cpf; 
     // }
-
     // public function defineNomeTitular(string $nome):void
     // {
     //     $this->nomeTitular = $nome; 
@@ -95,4 +98,13 @@ class Conta
         return $this->nomeTitular;
     }
 
+    // MÉTODOS PRIVADOS (de uso exclusivo da class).
+
+    private function validaNomeTitular(string $nomeTitular)
+    {
+        if (strlen($nomeTitular) < 5){
+            echo "O nome precisa ter no mínimo 5 caracteres.";
+            exit();
+        }
+    }
 }
