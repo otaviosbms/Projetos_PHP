@@ -21,6 +21,7 @@ class Conta
     private $cpfTitular;
     private $nomeTitular;
     private $saldo;
+    private static $numeroDeContas = 0; // static: atributo que diz respeito APENAS A CLASSE (FORMA), não tendo relação com os objetos/instancias .
 
     // \ METODO CONSTRUTOR / 
     // metodos construtores devem ser usados apenas para inicializar a instancia de forma válida.
@@ -33,7 +34,19 @@ class Conta
         $this->validaNomeTitular($nomeTitular);
         $this->nomeTitular = $nomeTitular;
         $this->saldo = 0;
+        self::$numeroDeContas++; // nomedaclass:: ou self:: -> Acessa as informações estaticas da classe
     }
+
+    // \ MÉTODO DESTRUTOR /
+    // quando um objeto perde ou é criado sem uma variavel de endereço.
+    // OBS: O metodo destrutor é AUTOMATICO, ou seja, a função dele craida na class é apenas usada como um aproveitador do instante onde o objeto é apagado para a aplicação de novas funcionalidades
+
+    // NESTE CASO: metodo destrutor informa ao contador que remove um item do numero de contas caso um obejeto seja apagado. 
+    public function __destruct()
+    {
+        self::$numeroDeContas--;
+    }
+
 
     // MÉTODOS PÚBLICOS:
 
@@ -98,6 +111,12 @@ class Conta
         return $this->nomeTitular;
     }
 
+    public static function recuperarNumeroDeContas(): int // static: atributo que diz respeito APENAS A CLASSE (FORMA), não tendo relação com os objetos/instancias .
+    {
+        return self::$numeroDeContas;
+    }
+
+
     // MÉTODOS PRIVADOS (de uso exclusivo da class).
 
     private function validaNomeTitular(string $nomeTitular)
@@ -107,4 +126,5 @@ class Conta
             exit();
         }
     }
+
 }
